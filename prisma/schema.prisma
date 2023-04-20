@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+enum Role{
+  BUYER
+  SELLER
+  ADMIN
+}
+
+model User{
+  id String @id @default(uuid())
+  name String @db.VarChar(254)
+  email String @db.VarChar(254) @unique
+  password String @db.VarChar(128)
+  cpf String @db.VarChar(11) @unique
+  phone String @db.VarChar(20)
+  birthdate String @db.VarChar(50)
+  description String @db.Text()
+  role Role @default(BUYER)
+  is_active Boolean @default(true)
+  created_at DateTime @default(now())
+  address Address?
+  announcement Announcement[]
+
+  @@map("users")
+}
+
+model Address{
+  id String @id @default(uuid())
+  zip_code String @db.VarChar(8)
+  state String @db.VarChar(150)
+  city String @db.VarChar(150)
+  street String @db.VarChar(150)
+  number String @db.VarChar(10)
+  complement String? @db.VarChar(150)
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String @unique
+  
+  @@map("adresses")
+}
+
+model Announcement{
+  id String @id @default(uuid())
+  brand String @db.VarChar(150)
+  model String @db.VarChar(254)
+  manufacture_year String @db.VarChar(4)
+  fuel String @db.VarChar(150)
+  mileage Int @db.Int()
+  color String @db.VarChar(150)
+  price_fipe String @db.VarChar(50)
+  price String @db.VarChar(50)
+  description String @db.Text()
+  is_active Boolean @default(true)
+  created_at DateTime @default(now())
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String 
+  listImage ListImage[] 
+
+  @@map("announcements")
+  @@index([user_id])
+}
+
+model ListImage{
+  id String @id @default(uuid())
+  image String @db.VarChar(200)
+  announcement Announcement @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
+  announcement_id String
+  
+  @@map("list_image")
+  @@index([announcement_id])
+}
