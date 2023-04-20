@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "../errors";
+import { verifyIsAdmin } from "./isAdmin.middleware";
 
 export const verifyProfileOwner = async (
   req: Request,
@@ -10,5 +10,5 @@ export const verifyProfileOwner = async (
     return next();
   }
 
-  throw new AppError("Missing permissions", 401);
+  return verifyIsAdmin(req, res, next);
 };

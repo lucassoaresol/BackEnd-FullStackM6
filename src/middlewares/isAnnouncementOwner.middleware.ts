@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "../errors";
 import prisma from "../prisma";
+import { verifyIsAdmin } from "./isAdmin.middleware";
 
 export const verifyAnnouncementOwner = async (
   req: Request,
@@ -17,5 +17,5 @@ export const verifyAnnouncementOwner = async (
     return next();
   }
 
-  throw new AppError("Missing permissions", 401);
+  return verifyIsAdmin(req, res, next);
 };
