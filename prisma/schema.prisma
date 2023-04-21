@@ -29,7 +29,7 @@ model User{
   role Role @default(BUYER)
   created_at DateTime @default(now())
   address Address?
-  announcement Announcement[]
+  announcements Announcement[]
 
   @@map("users")
 }

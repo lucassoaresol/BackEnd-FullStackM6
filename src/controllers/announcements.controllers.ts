@@ -13,7 +13,7 @@ export const createAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  const announcement = await createAnnouncementService(req.body, req.params.id);
+  const announcement = await createAnnouncementService(req.body, req.user.id);
   return res.status(201).json(announcement);
 };
 

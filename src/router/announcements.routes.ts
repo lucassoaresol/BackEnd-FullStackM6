@@ -19,7 +19,7 @@ import { AnnouncementCreateSchema, AnnouncementUpdateSchema } from "../schemas";
 export const announcementRouter = Router();
 
 announcementRouter.post(
-  "/:id",
+  "",
   verifyUserIsAuthenticated,
   verifyIsSeller,
   validateSchemaMiddleware(AnnouncementCreateSchema),
