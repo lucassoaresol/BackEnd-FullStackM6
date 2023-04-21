@@ -27,7 +27,6 @@ userRouter.get("/:id", retrieveUserController);
 userRouter.get(
   "/profile",
   verifyUserIsAuthenticated,
-  verifyProfileOwner,
   profileUserController
 );
 
