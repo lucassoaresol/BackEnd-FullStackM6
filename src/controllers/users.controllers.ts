@@ -23,6 +23,11 @@ export const retrieveUserController = async (req: Request, res: Response) => {
   return res.json(user);
 };
 
+export const profileUserController = async (req: Request, res: Response) => {
+  const user = await retrieveUserService(req.user.id);
+  return res.json(user);
+};
+
 export const updateUserController = async (req: Request, res: Response) => {
   const user = await updateUserService(req.params.id, req.body);
   return res.json(user);

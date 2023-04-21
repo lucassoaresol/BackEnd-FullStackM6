@@ -4,6 +4,7 @@ import {
   deleteUserController,
   listAnnouncementWithUserController,
   listUserController,
+  profileUserController,
   retrieveUserController,
   updateUserController,
 } from "../controllers";
@@ -23,6 +24,12 @@ userRouter.post(
 );
 userRouter.get("", listUserController);
 userRouter.get("/:id", retrieveUserController);
+userRouter.get(
+  "/profile",
+  verifyUserIsAuthenticated,
+  verifyProfileOwner,
+  profileUserController
+);
 
 userRouter.patch(
   "/:id",
