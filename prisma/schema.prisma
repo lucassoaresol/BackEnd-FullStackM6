@@ -27,7 +27,6 @@ model User{
   birthdate String @db.VarChar(50)
   description String @db.Text()
   role Role @default(BUYER)
-  is_active Boolean @default(true)
   created_at DateTime @default(now())
   address Address?
   announcement Announcement[]
