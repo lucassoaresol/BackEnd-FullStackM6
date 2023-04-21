@@ -23,12 +23,8 @@ userRouter.post(
   createUserController
 );
 userRouter.get("", listUserController);
+userRouter.get("/profile", verifyUserIsAuthenticated, profileUserController);
 userRouter.get("/:id", retrieveUserController);
-userRouter.get(
-  "/profile",
-  verifyUserIsAuthenticated,
-  profileUserController
-);
 
 userRouter.patch(
   "/:id",
