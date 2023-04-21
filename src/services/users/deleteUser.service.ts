@@ -3,24 +3,10 @@ import prisma from "../../prisma";
 
 export const deleteUserService = async (id: string) => {
   try {
-    await prisma.user.delete({ where: { id } });
+    await prisma.user.delete({
+      where: { id },
+    });
   } catch {
     throw new AppError("user not found", 404);
   }
-  // try {
-  //   await prisma.user.update({
-  //     where: { id },
-  //     data: {
-  //       is_active: false,
-  //       announcement: {
-  //         updateMany: {
-  //           where: { is_active: true },
-  //           data: { is_active: false },
-  //         },
-  //       },
-  //     },
-  //   });
-  // } catch {
-  //   throw new AppError("user not found", 404);
-  // }
 };

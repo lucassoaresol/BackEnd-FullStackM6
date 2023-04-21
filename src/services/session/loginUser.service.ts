@@ -13,7 +13,7 @@ export const loginUserService = async ({
     where: { email },
   });
 
-  if (!user || !user.is_active) {
+  if (!user) {
     throw new AppError("User or password invalid", 403);
   }
 
@@ -23,7 +23,7 @@ export const loginUserService = async ({
   }
 
   const token = jwt.sign(
-    { is_active: user.is_active, role: user.role },
+    { role: user.role },
 
     process.env.SECRET_KEY!,
     { subject: user.id, expiresIn: "24h" }

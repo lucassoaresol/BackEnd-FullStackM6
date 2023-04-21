@@ -12,8 +12,8 @@ export const verifyUserExists = async (
     where: { id },
   });
 
-  if (!user || !user.is_active) {
-    throw new AppError("Usernot found", 404);
+  if (!user) {
+    throw new AppError("User not found", 404);
   }
 
   return next();

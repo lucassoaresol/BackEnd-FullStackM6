@@ -5,7 +5,6 @@ declare global {
     interface Request {
       user: {
         id: string;
-        is_active: boolean;
         role: "BUYER" | "SELLER" | "ADMIN";
       };
     }

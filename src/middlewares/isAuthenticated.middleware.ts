@@ -23,7 +23,6 @@ export const verifyUserIsAuthenticated = (
     req.user = {
       id: decoded.sub,
       role: decoded.role,
-      is_active: decoded.is_active,
     };
   });
 
