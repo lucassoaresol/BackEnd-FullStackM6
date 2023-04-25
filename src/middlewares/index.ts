@@ -1,7 +1,10 @@
-export { verifyAnnouncementOwner } from "./isAnnouncementOwner.middleware";
-export { verifyProfileOwner } from "./isProfileOwner.middleware";
+export { verifyAnnouncementExists } from "./AnnouncementExists.middleware";
 export { verifyIsAdmin } from "./isAdmin.middleware";
-export { verifyIsBuyer } from "./isBuyer.middleware";
-export { verifyIsSeller } from "./isSeller.middleware";
+export { verifyAnnouncementOwner } from "./isAnnouncementOwner.middleware";
 export { verifyUserIsAuthenticated } from "./isAuthenticated.middleware";
+export { verifyIsBuyer } from "./isBuyer.middleware";
+export { verifyProfileOwner } from "./isProfileOwner.middleware";
+export { verifyRecoveryIsValid } from "./isRecovery.middleware";
+export { verifyIsSeller } from "./isSeller.middleware";
+export { verifyUserExists } from "./UserExists.middleware";
 export { validateSchemaMiddleware } from "./validateSchema.middleware";

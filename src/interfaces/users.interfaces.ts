@@ -1,3 +1,8 @@
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
 export interface IAddressRequest {
   zip_code: string;
   state: string;

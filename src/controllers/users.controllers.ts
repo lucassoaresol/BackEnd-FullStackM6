@@ -1,12 +1,12 @@
-import { Response } from "express";
-import { Request } from "express";
+import { Request, Response } from "express";
 import {
   createUserService,
-  deleteUserService,
   listUserService,
   retrieveUserService,
   updateUserService,
-} from "../services/users";
+  deleteUserService,
+  loginUserService,
+} from "../services";
 
 export const createUserController = async (req: Request, res: Response) => {
   const user = await createUserService(req.body);
@@ -36,4 +36,10 @@ export const updateUserController = async (req: Request, res: Response) => {
 export const deleteUserController = async (req: Request, res: Response) => {
   await deleteUserService(req.params.id);
   return res.status(204).json({});
+};
+
+export const loginUserController = async (req: Request, res: Response) => {
+  const token = await loginUserService(req.body);
+
+  return res.status(201).json(token);
 };

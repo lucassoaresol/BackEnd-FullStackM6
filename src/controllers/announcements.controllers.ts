@@ -1,19 +1,18 @@
-import { Response } from "express";
-import { Request } from "express";
+import { Request, Response } from "express";
 import {
   createAnnouncementService,
-  deleteAnnouncementService,
   listAnnouncementService,
   listAnnouncementWithUserService,
   retrieveAnnouncementService,
   updateAnnouncementService,
-} from "../services/announcements";
+  deleteAnnouncementService,
+} from "../services";
 
 export const createAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  const announcement = await createAnnouncementService(req.body, req.user.id);
+  const announcement = await createAnnouncementService(req.body, req.params.id);
   return res.status(201).json(announcement);
 };
 

@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+export const UserLoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
 const AddressCreateSchema = z.object({
   zip_code: z.string(),
   state: z.string(),

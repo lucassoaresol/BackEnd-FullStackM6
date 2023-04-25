@@ -1,6 +1,6 @@
 import { hashSync } from "bcryptjs";
 import { AppError } from "../../errors";
-import { IUserUpdateRequest } from "../../interfaces/users.interfaces";
+import { IUserUpdateRequest } from "../../interfaces";
 import prisma from "../../prisma";
 
 export const updateUserService = async (

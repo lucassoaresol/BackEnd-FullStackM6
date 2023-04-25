@@ -1,7 +1,7 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 import { compare } from "bcryptjs";
-import { AppError } from "../../errors/appError";
+import { AppError } from "../../errors";
 import prisma from "../../prisma";
 import { IUserLogin } from "../../interfaces";
 

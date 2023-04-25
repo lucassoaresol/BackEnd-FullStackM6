@@ -1,5 +1,5 @@
 import prisma from "../../prisma";
-import { IUserRequest } from "../../interfaces/users.interfaces";
+import { IUserRequest } from "../../interfaces";
 import { hashSync } from "bcryptjs";
 import { AppError } from "../../errors";
 
