@@ -12,7 +12,7 @@ export const createAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  const announcement = await createAnnouncementService(req.body, req.params.id);
+  const announcement = await createAnnouncementService(req.body, req.user.id);
   return res.status(201).json(announcement);
 };
 
@@ -20,7 +20,7 @@ export const listAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  const announcements = await listAnnouncementService();
+  const announcements = await listAnnouncementService(req.query);
   return res.json(announcements);
 };
 

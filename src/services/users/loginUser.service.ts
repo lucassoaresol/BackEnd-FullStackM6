@@ -22,12 +22,10 @@ export const loginUserService = async ({
     throw new AppError("User or password invalid", 403);
   }
 
-  const token = jwt.sign(
-    { role: user.role },
-
-    process.env.SECRET_KEY!,
-    { subject: user.id, expiresIn: "24h" }
-  );
+  const token = jwt.sign({ role: user.role }, process.env.SECRET_KEY!, {
+    subject: user.id,
+    expiresIn: "24h",
+  });
 
   return { token: token };
 };

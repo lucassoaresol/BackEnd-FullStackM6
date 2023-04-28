@@ -21,6 +21,7 @@ export const createUserService = async ({
   if (user) {
     throw new AppError("user already exists", 409);
   }
+
   password = hashSync(password, 10);
 
   !role ? "BUYER" : role;

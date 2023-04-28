@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 app.use("/users", userRouter);
 app.use("/login", sessionRouter);
 app.use("/announcements", announcementRouter);
-app.use("/password", passwordRouter);
+app.use("/resetpassword", passwordRouter);
 
 app.use(errorHandler);
 

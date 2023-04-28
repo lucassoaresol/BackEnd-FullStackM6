@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { AnnouncementCreateSchema, AnnouncementUpdateSchema } from "../schemas";
+
 import {
   createAnnouncementController,
   deleteAnnouncementController,
@@ -6,18 +8,18 @@ import {
   retrieveAnnouncementController,
   updateAnnouncementController,
 } from "../controllers";
+
 import {
   validateSchemaMiddleware,
   verifyAnnouncementOwner,
   verifyIsSeller,
   verifyUserIsAuthenticated,
 } from "../middlewares";
-import { AnnouncementCreateSchema, AnnouncementUpdateSchema } from "../schemas";
 
 export const announcementRouter = Router();
 
 announcementRouter.post(
-  "/:id",
+  "",
   verifyUserIsAuthenticated,
   verifyIsSeller,
   validateSchemaMiddleware(AnnouncementCreateSchema),

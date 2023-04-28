@@ -7,6 +7,5 @@ export interface IUpdateRecoveryRequest {
 }
 
 export interface IUpdatePasswordRequest {
-  oldPassword: string;
   password: string;
 }

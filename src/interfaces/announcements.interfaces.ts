@@ -27,3 +27,15 @@ export interface IAnnouncementUpdateRequest {
   description?: string;
   is_active?: boolean;
 }
+
+export interface IQuery {
+  brand?: string;
+  model?: string;
+  manufacture_year?: string;
+  fuel?: string;
+  color?: string;
+  priceMin?: string;
+  priceMax?: string;
+  mileageMin?: number;
+  mileageMax?: number;
+}
