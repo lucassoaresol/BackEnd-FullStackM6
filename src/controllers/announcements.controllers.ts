@@ -60,7 +60,11 @@ export const deleteAnnouncementController = async (
 };
 
 export const createImageController = async (req: Request, res: Response) => {
-  const image = await createImageService(req.file, req.body.announcement_id);
+  const image = await createImageService(
+    req.file,
+    req.user.id,
+    req.body.announcement_id
+  );
   return res.status(201).json(image);
 };
 

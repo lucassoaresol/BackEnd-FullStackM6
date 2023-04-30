@@ -30,6 +30,7 @@ model User{
   created_at DateTime @default(now())
   address Address?
   announcements Announcement[]
+  listImage ListImage[]
   token Token?
 
   @@map("users")
@@ -78,9 +79,12 @@ model ListImage{
   created_at DateTime @default(now())
   announcement Announcement? @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
   announcement_id String?
+  user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String?
   
   @@map("list_image")
   @@index([announcement_id])
+  @@index([user_id])
 }
 
 model Token{
