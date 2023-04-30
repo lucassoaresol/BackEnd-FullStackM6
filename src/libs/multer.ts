@@ -3,6 +3,8 @@ import multer, { FileFilterCallback } from "multer";
 import fs from "node:fs";
 import { resolve } from "node:path";
 import crypto from "node:crypto";
+import { v2 as cloudinary } from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 import "dotenv/config";
 
 const tmpfolder = resolve(__dirname, "..", "..", "tmp", "uploads");
@@ -15,20 +17,22 @@ if (process.env.APP_URL) {
 
 const fileSize = 2 * 1024 * 1024;
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, tmpfolder);
-  },
-  filename: (req, file, cb) => {
-    crypto.randomBytes(16, (err, hash) => {
-      if (err) cb(err, err.message);
+const storage = process.env.APP_URL
+  ? multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, tmpfolder);
+      },
+      filename: (req, file, cb) => {
+        crypto.randomBytes(16, (err, hash) => {
+          if (err) cb(err, err.message);
 
-      const filename = `${hash.toString("hex")}-${file.originalname}`;
+          const filename = `${hash.toString("hex")}-${file.originalname}`;
 
-      cb(null, filename);
-    });
-  },
-});
+          cb(null, filename);
+        });
+      },
+    })
+  : new CloudinaryStorage({ cloudinary });
 
 const fileFilter = (
   req: Request,
