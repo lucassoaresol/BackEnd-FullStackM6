@@ -7,8 +7,10 @@ import "dotenv/config";
 
 const tmpfolder = resolve(__dirname, "..", "..", "tmp", "uploads");
 
-if (!fs.existsSync(tmpfolder)) {
-  fs.mkdirSync(tmpfolder, { recursive: true });
+if (process.env.APP_URL) {
+  if (!fs.existsSync(tmpfolder)) {
+    fs.mkdirSync(tmpfolder, { recursive: true });
+  }
 }
 
 const fileSize = 2 * 1024 * 1024;
@@ -43,9 +45,15 @@ const fileFilter = (
   }
 };
 
-export const upload = multer({
-  dest: tmpfolder,
-  storage,
-  limits: { fileSize },
-  fileFilter,
-});
+export const upload = process.env.APP_URL
+  ? multer({
+      dest: tmpfolder,
+      storage,
+      limits: { fileSize },
+      fileFilter,
+    })
+  : multer({
+      storage,
+      limits: { fileSize },
+      fileFilter,
+    });

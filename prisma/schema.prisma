@@ -72,9 +72,8 @@ model Announcement{
 
 model ListImage{
   id String @id @default(uuid())
-  name String @db.VarChar(200)
+  name String? @db.VarChar(200)
   size Int @db.Int()
-  key String @db.VarChar(200)
   url String @db.Text()
   created_at DateTime @default(now())
   announcement Announcement? @relation(fields: [announcement_id], references: [id], onDelete: Cascade)

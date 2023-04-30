@@ -4,7 +4,7 @@ import prisma from "../../prisma";
 export const retrieveUserService = async (id: string) => {
   const user = await prisma.user.findUnique({
     where: { id },
-    include: { address: true, announcements: true },
+    include: { address: true, announcements: { include: { listImage: true } } },
   });
 
   if (!user) {

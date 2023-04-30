@@ -11,12 +11,11 @@ export const deleteImageService = async (id: string) => {
       where: { id },
     });
   } else {
-    const image = await prisma.listImage.findUnique({ where: { id } });
-    promisify(fs.unlink)(
-      resolve(__dirname, "..", "..", "..", "tmp", "uploads", image.key)
-    );
-    await prisma.listImage.delete({
+    const image = await prisma.listImage.delete({
       where: { id },
     });
+    promisify(fs.unlink)(
+      resolve(__dirname, "..", "..", "..", "tmp", "uploads", image.name)
+    );
   }
 };
