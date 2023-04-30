@@ -3,4 +3,3 @@ vs_code
 .env
 *lock*
 dist/
-tmp
