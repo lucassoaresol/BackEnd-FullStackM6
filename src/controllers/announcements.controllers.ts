@@ -6,6 +6,9 @@ import {
   retrieveAnnouncementService,
   updateAnnouncementService,
   deleteAnnouncementService,
+  createImageService,
+  deleteImageService,
+  listImageService,
 } from "../services";
 
 export const createAnnouncementController = async (
@@ -53,5 +56,20 @@ export const deleteAnnouncementController = async (
   res: Response
 ) => {
   await deleteAnnouncementService(req.params.id);
+  return res.status(204).json({});
+};
+
+export const createImageController = async (req: Request, res: Response) => {
+  const image = await createImageService(req.file, req.body.announcement_id);
+  return res.status(201).json(image);
+};
+
+export const listImageController = async (req: Request, res: Response) => {
+  const images = await listImageService(req.params.id);
+  return res.json(images);
+};
+
+export const deleteImageController = async (req: Request, res: Response) => {
+  await deleteImageService(req.params.id);
   return res.status(204).json({});
 };

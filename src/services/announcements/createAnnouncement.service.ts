@@ -28,8 +28,14 @@ export const createAnnouncementService = async (
       price,
       description,
       user_id,
-      listImage: { createMany: { data: listImage } },
     },
+  });
+
+  listImage.forEach(async ({ id }) => {
+    await prisma.listImage.update({
+      where: { id },
+      data: { announcement_id: announcement.id },
+    });
   });
 
   return announcement;

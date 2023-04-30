@@ -1,6 +1,9 @@
 export { createAnnouncementService } from "./createAnnouncement.service";
+export { createImageService } from "./createImage.service";
 export { deleteAnnouncementService } from "./deleteAnnouncement.service";
+export { deleteImageService } from "./deleteImage.service";
 export { listAnnouncementService } from "./listAnnouncement.service";
 export { listAnnouncementWithUserService } from "./listAnnouncementWithUser.service";
+export { listImageService } from "./listImage.service";
 export { retrieveAnnouncementService } from "./retrieveAnnouncement.service";
 export { updateAnnouncementService } from "./updateAnnouncement.service";

@@ -1,5 +1,5 @@
 export interface IImageRequest {
-  image: string;
+  id: string;
 }
 
 export interface IAnnouncementRequest {

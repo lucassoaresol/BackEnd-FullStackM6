@@ -11,7 +11,7 @@ export const AnnouncementCreateSchema = z.object({
   price: z.string(),
   description: z.string(),
   is_active: z.string().optional(),
-  listImage: z.string().array(),
+  listImage: z.array(z.object({ id: z.string() })),
 });
 
 export const AnnouncementReturnSchema = AnnouncementCreateSchema.extend({

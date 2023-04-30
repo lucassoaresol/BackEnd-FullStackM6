@@ -72,9 +72,13 @@ model Announcement{
 
 model ListImage{
   id String @id @default(uuid())
-  image String @db.VarChar(200)
-  announcement Announcement @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
-  announcement_id String
+  name String @db.VarChar(200)
+  size Int @db.Int()
+  key String @db.VarChar(200)
+  url String @db.Text()
+  created_at DateTime @default(now())
+  announcement Announcement? @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
+  announcement_id String?
   
   @@map("list_image")
   @@index([announcement_id])
