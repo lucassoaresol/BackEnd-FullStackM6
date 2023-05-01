@@ -45,23 +45,23 @@ export const listAnnouncementService = async (query: IQuery) => {
   const mileageFilter =
     mileageMin && mileageMax
       ? modelFilter.filter(
-          (item) => item.mileage > +mileageMin && item.mileage < +mileageMax
+          (item) => item.mileage >= +mileageMin && item.mileage <= +mileageMax
         )
       : mileageMax
-      ? modelFilter.filter((item) => item.mileage < +mileageMax)
+      ? modelFilter.filter((item) => item.mileage <= +mileageMax)
       : mileageMin
-      ? modelFilter.filter((item) => item.mileage > +mileageMin)
+      ? modelFilter.filter((item) => item.mileage >= +mileageMin)
       : modelFilter;
 
   const priceFilter =
     priceMax && priceMin
       ? mileageFilter.filter(
-          (item) => +item.price > +priceMin && +item.price < +priceMax
+          (item) => +item.price >= +priceMin && +item.price <= +priceMax
         )
       : priceMax
-      ? mileageFilter.filter((item) => +item.price < +priceMax)
+      ? mileageFilter.filter((item) => +item.price <= +priceMax)
       : priceMin
-      ? mileageFilter.filter((item) => +item.price > +priceMin)
+      ? mileageFilter.filter((item) => +item.price >= +priceMin)
       : mileageFilter;
 
   return priceFilter;

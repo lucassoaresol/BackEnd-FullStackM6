@@ -36,6 +36,6 @@ export interface IQuery {
   color?: string;
   priceMin?: string;
   priceMax?: string;
-  mileageMin?: number;
-  mileageMax?: number;
+  mileageMin?: string;
+  mileageMax?: string;
 }

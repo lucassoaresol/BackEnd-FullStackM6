@@ -2,7 +2,7 @@ import prisma from "../../prisma";
 import "dotenv/config";
 
 export const createImageService = async (
-  { filename: id, size, path }: Express.Multer.File,
+  { originalname: name, path, size, filename: id }: Express.Multer.File,
   user_id: string,
   announcement_id?: string
 ) => {
@@ -10,6 +10,7 @@ export const createImageService = async (
     const image = await prisma.listImage.create({
       data: {
         id,
+        name,
         size,
         url: path,
         announcement_id,
