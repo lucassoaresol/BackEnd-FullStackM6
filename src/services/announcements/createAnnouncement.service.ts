@@ -31,13 +31,14 @@ export const createAnnouncementService = async (
     },
   });
 
-  console.log(listImage);
-
   listImage.forEach(async ({ id }) => {
-    await prisma.listImage.update({
+    console.log(id);
+    const image = await prisma.listImage.update({
       where: { id },
       data: { announcement_id: announcement.id },
     });
+
+    console.log(image);
   });
 
   return announcement;
