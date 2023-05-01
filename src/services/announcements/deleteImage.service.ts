@@ -6,16 +6,16 @@ import { promisify } from "util";
 
 export const deleteImageService = async (id: string) => {
   if (!process.env.APP_URL) {
-    await cloudinary.uploader.destroy(id);
-    await prisma.listImage.delete({
+    const { key } = await prisma.listImage.delete({
       where: { id },
     });
+    await cloudinary.uploader.destroy(key);
   } else {
-    const image = await prisma.listImage.delete({
+    const { key } = await prisma.listImage.delete({
       where: { id },
     });
     promisify(fs.unlink)(
-      resolve(__dirname, "..", "..", "..", "tmp", "uploads", image.name)
+      resolve(__dirname, "..", "..", "..", "tmp", "uploads", key)
     );
   }
 };
