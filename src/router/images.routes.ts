@@ -1,26 +1,34 @@
 import { Router } from "express";
-import { verifyIsSeller, verifyUserIsAuthenticated } from "../middlewares";
+import {
+  verifyImageExists,
+  verifyIsSeller,
+  verifyUserIsAuthenticated,
+} from "../middlewares";
 import { upload } from "../libs";
 import {
   createImageAnnouncementController,
-  createImageCoverAnnouncementController,
-  createImageUserController,
+  createImageProfileController,
+  createImageCoverController,
+  listImageController,
+  deleteImageController,
 } from "../controllers";
 
 export const imageRouter = Router();
 
 imageRouter.post(
   "/user/:id",
+  verifyImageExists,
   upload.single("image"),
-  createImageUserController
+  createImageProfileController
 );
 
 imageRouter.post(
   "/announcement/:id/cover",
   verifyUserIsAuthenticated,
   verifyIsSeller,
+  verifyImageExists,
   upload.single("image"),
-  createImageCoverAnnouncementController
+  createImageCoverController
 );
 
 imageRouter.post(
@@ -30,3 +38,7 @@ imageRouter.post(
   upload.single("image"),
   createImageAnnouncementController
 );
+
+imageRouter.get("", listImageController);
+
+imageRouter.delete("/:id", deleteImageController);

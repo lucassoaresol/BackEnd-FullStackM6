@@ -9,9 +9,33 @@ export const deleteUserService = async (id: string) => {
   try {
     const user = await prisma.user.delete({
       where: { id },
-      include: { listImage: true },
+      include: {
+        profile: true,
+        announcements: { include: { cover: true } },
+        listImage: { include: { image: true } },
+      },
     });
-    user.listImage.forEach(async ({ key }) => {
+    const key = user.profile.key;
+    if (!process.env.APP_URL) {
+      await cloudinary.uploader.destroy(key);
+    } else {
+      promisify(fs.unlink)(
+        resolve(__dirname, "..", "..", "..", "tmp", "uploads", key)
+      );
+    }
+    user.announcements.forEach(async ({ cover }) => {
+      const key = cover.key;
+      if (!process.env.APP_URL) {
+        await cloudinary.uploader.destroy(key);
+      } else {
+        promisify(fs.unlink)(
+          resolve(__dirname, "..", "..", "..", "tmp", "uploads", key)
+        );
+      }
+    });
+    user.listImage.forEach(async ({ image }) => {
+      const key = image.key;
+      await prisma.image.delete({ where: { key } });
       if (!process.env.APP_URL) {
         await cloudinary.uploader.destroy(key);
       } else {

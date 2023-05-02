@@ -1,4 +1,5 @@
 export { verifyAnnouncementExists } from "./AnnouncementExists.middleware";
+export { verifyImageExists } from "./ImageExists.middleware";
 export { verifyIsAdmin } from "./isAdmin.middleware";
 export { verifyAnnouncementOwner } from "./isAnnouncementOwner.middleware";
 export { verifyUserIsAuthenticated } from "./isAuthenticated.middleware";

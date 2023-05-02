@@ -9,9 +9,19 @@ export const deleteAnnouncementService = async (id: string) => {
   try {
     const announcement = await prisma.announcement.delete({
       where: { id },
-      include: { listImage: true },
+      include: { cover: true, listImage: { include: { image: true } } },
     });
-    announcement.listImage.forEach(async ({ key }) => {
+    const key = announcement.cover.key;
+    if (!process.env.APP_URL) {
+      await cloudinary.uploader.destroy(key);
+    } else {
+      promisify(fs.unlink)(
+        resolve(__dirname, "..", "..", "..", "tmp", "uploads", key)
+      );
+    }
+    announcement.listImage.forEach(async ({ image }) => {
+      const key = image.key;
+      await prisma.image.delete({ where: { key } });
       if (!process.env.APP_URL) {
         await cloudinary.uploader.destroy(key);
       } else {

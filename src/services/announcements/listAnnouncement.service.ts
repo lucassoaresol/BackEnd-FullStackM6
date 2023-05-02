@@ -5,7 +5,11 @@ const filterPrice = (min: string, max: string) => {};
 
 export const listAnnouncementService = async (query: IQuery) => {
   const announcements = await prisma.announcement.findMany({
-    include: { user: { include: { listImage: true } }, listImage: true },
+    include: {
+      cover: true,
+      user: { include: { profile: true } },
+      listImage: { include: { image: true } },
+    },
   });
 
   const {

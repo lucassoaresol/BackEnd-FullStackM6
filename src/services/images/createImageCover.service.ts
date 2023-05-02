@@ -1,21 +1,20 @@
 import prisma from "../../prisma";
 import "dotenv/config";
 
-export const createImageUserService = async (
+export const createImageCoverService = async (
   { originalname: name, path, size, filename: key }: Express.Multer.File,
-  user_id: string
+  announcement_id: string
 ) => {
   const data = {
     name,
     size,
     url: path,
     key,
-    is_profile: true,
-    user_id,
+    announcement_id,
   };
 
   if (!process.env.APP_URL) {
-    const image = await prisma.listImage.create({
+    const image = await prisma.image.create({
       data,
     });
     return image;
@@ -24,7 +23,7 @@ export const createImageUserService = async (
   const url = `${process.env.APP_URL}/files/${key}`;
   data.url = url;
 
-  const image = await prisma.listImage.create({
+  const image = await prisma.image.create({
     data,
   });
 

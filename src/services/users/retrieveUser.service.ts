@@ -6,8 +6,10 @@ export const retrieveUserService = async (id: string) => {
     where: { id },
     include: {
       address: true,
-      announcements: { include: { listImage: true } },
-      listImage: { where: { announcement_id: null } },
+      profile: true,
+      announcements: {
+        include: { cover: true, listImage: { include: { image: true } } },
+      },
     },
   });
 

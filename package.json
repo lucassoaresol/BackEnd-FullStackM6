@@ -9,7 +9,7 @@
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "vercel-build": "npx prisma db push"
+    "vercel-build": "npx prisma migrate dev"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
