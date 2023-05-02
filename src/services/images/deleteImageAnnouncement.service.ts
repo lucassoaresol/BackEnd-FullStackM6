@@ -4,7 +4,7 @@ import fs from "node:fs";
 import { resolve } from "node:path";
 import { promisify } from "util";
 
-export const deleteImageService = async (id: string) => {
+export const deleteImageAnnouncementService = async (id: string) => {
   if (!process.env.APP_URL) {
     const { key } = await prisma.listImage.delete({
       where: { id },

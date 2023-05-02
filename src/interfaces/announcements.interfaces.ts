@@ -1,7 +1,3 @@
-export interface IImageRequest {
-  id: string;
-}
-
 export interface IAnnouncementRequest {
   brand: string;
   model: string;
@@ -12,7 +8,6 @@ export interface IAnnouncementRequest {
   price_fipe: string;
   price: string;
   description: string;
-  listImage: Array<IImageRequest>;
 }
 
 export interface IAnnouncementUpdateRequest {

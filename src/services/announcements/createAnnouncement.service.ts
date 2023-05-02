@@ -12,7 +12,6 @@ export const createAnnouncementService = async (
     price_fipe,
     price,
     description,
-    listImage,
   }: IAnnouncementRequest,
   user_id: string
 ) => {
@@ -29,13 +28,6 @@ export const createAnnouncementService = async (
       description,
       user_id,
     },
-  });
-
-  listImage.forEach(async ({ id }) => {
-    await prisma.listImage.update({
-      where: { id },
-      data: { announcement_id: announcement.id },
-    });
   });
 
   return announcement;

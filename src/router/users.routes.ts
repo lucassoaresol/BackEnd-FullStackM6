@@ -21,11 +21,13 @@ import {
   UserLoginSchema,
   UserUpdateRequestSchema,
 } from "../schemas";
+import { upload } from "../libs";
 
 export const userRouter = Router();
 
 userRouter.post(
   "",
+  upload.single("image"),
   validateSchemaMiddleware(UserCreateSchema),
   createUserController
 );

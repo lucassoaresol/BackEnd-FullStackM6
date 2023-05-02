@@ -1,6 +1,6 @@
 import prisma from "../../prisma";
 
-export const listImageService = async (id: string) => {
+export const listImageAnnouncementService = async (id: string) => {
   const images = await prisma.listImage.findMany({
     where: { announcement_id: id },
   });
