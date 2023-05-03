@@ -24,6 +24,7 @@ export interface IAnnouncementUpdateRequest {
 }
 
 export interface IQuery {
+  page?: string;
   brand?: string;
   model?: string;
   manufacture_year?: string;

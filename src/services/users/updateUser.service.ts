@@ -21,7 +21,7 @@ export const updateUserService = async (
   }
   if (email) {
     const user = await prisma.user.findUnique({ where: { email } });
-    if (user) {
+    if (user && user.id !== id) {
       throw new AppError(`${email} already exists`, 409);
     }
   }

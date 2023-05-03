@@ -8,7 +8,11 @@ export const retrieveUserService = async (id: string) => {
       address: true,
       profile: true,
       announcements: {
-        include: { cover: true, listImage: { include: { image: true } } },
+        include: {
+          cover: true,
+          listImage: { include: { image: true } },
+          user: true,
+        },
       },
     },
   });

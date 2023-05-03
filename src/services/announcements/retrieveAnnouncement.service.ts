@@ -4,7 +4,11 @@ import prisma from "../../prisma";
 export const retrieveAnnouncementService = async (id: string) => {
   const announcement = await prisma.announcement.findUnique({
     where: { id },
-    include: { user: true, listImage: true },
+    include: {
+      user: true,
+      cover: true,
+      listImage: { include: { image: true } },
+    },
   });
 
   if (!announcement) {
