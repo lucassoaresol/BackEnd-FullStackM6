@@ -11,7 +11,7 @@ export const retrieveUserService = async (id: string) => {
         include: {
           cover: true,
           listImage: { include: { image: true } },
-          user: true,
+          user: { include: { profile: true } },
         },
       },
     },
