@@ -5,9 +5,10 @@ export const retrieveAnnouncementService = async (id: string) => {
   const announcement = await prisma.announcement.findUnique({
     where: { id },
     include: {
-      user: true,
+      user: { include: { profile: true } },
       cover: true,
       listImage: { include: { image: true } },
+      listComment: { include: { user: { include: { profile: true } } } },
     },
   });
 

@@ -13,6 +13,10 @@ export const AnnouncementCreateSchema = z.object({
   is_active: z.string().optional(),
 });
 
+export const CommentCreateSchema = z.object({
+  comment: z.string(),
+});
+
 export const AnnouncementReturnSchema = AnnouncementCreateSchema.extend({
   id: z.string(),
 

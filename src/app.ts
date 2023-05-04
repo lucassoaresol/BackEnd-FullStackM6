@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import { errorHandler } from "./errors";
 import {
   announcementRouter,
+  commentRouter,
   imageRouter,
   passwordRouter,
   sessionRouter,
@@ -26,6 +27,7 @@ app.use("/users", userRouter);
 app.use("/login", sessionRouter);
 app.use("/announcements", announcementRouter);
 app.use("/images", imageRouter);
+app.use("/comments", commentRouter);
 app.use("/resetpassword", passwordRouter);
 app.use("/files", express.static(resolve(__dirname, "..", "tmp", "uploads")));
 

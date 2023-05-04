@@ -32,6 +32,7 @@ model User{
   announcements Announcement[]
   token Token?
   listImage ListImage[]
+  listComment ListComment[]
 
   @@map("users")
 }
@@ -67,6 +68,7 @@ model Announcement{
   user_id String 
   cover Image? 
   listImage ListImage[]
+  listComment ListComment[]
 
   @@map("announcements")
 }
@@ -107,4 +109,16 @@ model Token{
   created_at DateTime @default(now())
   
   @@map("token")
+}
+
+model ListComment{
+  id String @id @default(uuid())
+  comment String @db.Text()
+  created_at DateTime @default(now())
+  announcement Announcement @relation(fields: [announcement_id], references: [id], onDelete: Cascade)
+  announcement_id String
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String
+  
+  @@map("list_comment")
 }

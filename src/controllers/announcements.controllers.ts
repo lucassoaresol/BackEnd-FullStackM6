@@ -6,6 +6,7 @@ import {
   retrieveAnnouncementService,
   updateAnnouncementService,
   deleteAnnouncementService,
+  createCommentService,
 } from "../services";
 
 export const createAnnouncementController = async (
@@ -54,4 +55,13 @@ export const deleteAnnouncementController = async (
 ) => {
   await deleteAnnouncementService(req.params.id);
   return res.status(204).json({});
+};
+
+export const createCommentController = async (req: Request, res: Response) => {
+  const comment = await createCommentService(
+    req.body,
+    req.params.id,
+    req.user.id
+  );
+  return res.status(201).json(comment);
 };

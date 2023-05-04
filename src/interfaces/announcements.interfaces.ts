@@ -10,6 +10,10 @@ export interface IAnnouncementRequest {
   description: string;
 }
 
+export interface ICommentRequest {
+  comment: string;
+}
+
 export interface IAnnouncementUpdateRequest {
   brand?: string;
   model?: string;
