@@ -8,6 +8,7 @@ import {
   createAnnouncementController,
   createCommentController,
   deleteAnnouncementController,
+  deleteCommentController,
   listAnnouncementController,
   retrieveAnnouncementController,
   updateAnnouncementController,
@@ -51,4 +52,10 @@ commentRouter.post(
   verifyUserIsAuthenticated,
   validateSchemaMiddleware(CommentCreateSchema),
   createCommentController
+);
+
+commentRouter.delete(
+  "/:id",
+  verifyUserIsAuthenticated,
+  deleteCommentController
 );
